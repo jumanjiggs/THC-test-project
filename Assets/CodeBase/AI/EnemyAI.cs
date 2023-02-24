@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CodeBase.AI
 {
-    public class EnemyAI : CharacterBase
+    public class EnemyAI : UnitBase
     {
         protected override void JumpOnHexagon()
         {

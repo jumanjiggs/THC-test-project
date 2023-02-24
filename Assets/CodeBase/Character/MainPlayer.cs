@@ -2,7 +2,7 @@
 
 namespace CodeBase.Character
 {
-    public class MainPlayer : CharacterBase
+    public class MainPlayer : UnitBase
     {
         protected override void JumpOnHexagon()
         {

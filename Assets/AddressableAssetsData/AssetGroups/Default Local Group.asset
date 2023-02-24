@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8eda6721bf7b8b64e9b50f90eaee003d
+  m_SerializeEntries:
+  - m_GUID: ba54e0f64ad505c4fa5521c008dc356e
+    m_Address: Hex2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b4ad4e21329130e4a99ffc8cefe46816
+    m_Address: Hex3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ee43f6acf07a194eb588a7dd5bc1c5b
+    m_Address: Hex4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: beebce36c61d60f42b22b153abcfd9b0
+    m_Address: Hex5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2e0f1312996d68349933ef1d0445cd09
+    m_Address: Hex6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e37ca3e943829a479e4ff6d29c23d73
+    m_Address: Hex7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4f49c09706dbf4a4e99dc6a51fab25cc
+    m_Address: Hex8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b6b0c220ebe042b498958eadf1f52fa4
+    m_Address: Hex9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 61a4f649633a1f94abeb21559df74bd4
+    m_Address: Hex10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8d65fe10dbb32e34aa703943ab85d9c0
+    m_Address: Hex11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e451c469d5daa4e46aac7a3b9de0c3a4
+    m_Address: Hex12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9c6353c0a6f5e524b8c947bc6aa1c756
+    m_Address: Hex13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 92b694c77a8f5d64eb88d747e08f1905
+    m_Address: Hex14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6d34a82773c25b44a97610f246fb01f7
+    m_Address: Hex15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b5d591dbb72ac04a80d42bbb710cb7a
+    m_Address: Assets/Prefabs/Character/Stickman_heads_sphere.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 538cbd4ed2ade784e8b624d3d20013cb, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1c115da033baafb49ac5491a8ddca28c, type: 2}
+    - {fileID: 11400000, guid: a6f7481565863164983428596b82af46, type: 2}

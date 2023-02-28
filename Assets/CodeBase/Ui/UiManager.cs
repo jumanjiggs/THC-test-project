@@ -1,14 +1,14 @@
-﻿using System;
-using CodeBase.Hexagons;
+﻿using CodeBase.Hexagons;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace CodeBase
+namespace CodeBase.Ui
 {
     public class UiManager : MonoBehaviour
     {
         private const string SceneName = "Menu";
+        
         [SerializeField] private UIPanel winUI;
         [SerializeField] private Button nextButton;
         [SerializeField] private SpawnerHexagons spawnerHexagons;

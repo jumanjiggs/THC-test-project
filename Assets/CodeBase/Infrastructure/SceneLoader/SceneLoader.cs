@@ -6,6 +6,7 @@ namespace CodeBase.Infrastructure.SceneLoader
 {
     public class SceneLoader : MonoBehaviour
     {
+        private const string SceneName = "Gameplay";
         [SerializeField] private Button nextScene;
         [SerializeField] private Button quitGame;
 
@@ -16,7 +17,7 @@ namespace CodeBase.Infrastructure.SceneLoader
         }
 
         private void LoadNextScene() => 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneName);
 
         private void QuitGame() => 
             Application.Quit();

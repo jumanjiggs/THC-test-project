@@ -1,5 +1,6 @@
-﻿using CodeBase.AI;
-using CodeBase.Character;
+﻿using CodeBase.Character;
+using CodeBase.Enemies;
+using CodeBase.Hexagons;
 using UnityEngine;
 using Zenject;
 
@@ -7,11 +8,14 @@ namespace CodeBase.Infrastructure.Bootstrap
 {
     public class LocationInstaller : MonoInstaller
     {
+        [Header("PLAYER")]
         public Transform characterSpawnPoint;
-        public Transform enemySpawnPoint;
         public GameObject characterPrefab;
+        public SpawnerHexagons spawnerHexagonsPlayer;
+        [Header("ENEMY")]
         public GameObject enemyPrefab;
-        public SpawnerHexagons spawnerHexagons;
+        public Transform enemySpawnPoint;
+        public SpawnerHexagons spawnerHexagonsEnemy;
 
         public override void InstallBindings()
         {
@@ -24,7 +28,8 @@ namespace CodeBase.Infrastructure.Bootstrap
             Player player = Container.InstantiatePrefabForComponent<Player>(characterPrefab, characterSpawnPoint.position,
                 Quaternion.identity, null);
             Container.Bind<Player>().FromInstance(player).AsSingle();
-            player.spawnerHexagons = spawnerHexagons;
+            player.Initialize(spawnerHexagonsPlayer);
+            player.GetComponent<PlayerAnimator>().Initialize(spawnerHexagonsPlayer);
         }
 
         private void BindEnemy()
@@ -32,7 +37,7 @@ namespace CodeBase.Infrastructure.Bootstrap
             Enemy enemy = Container.InstantiatePrefabForComponent<Enemy>(enemyPrefab, enemySpawnPoint.position,
                 Quaternion.identity, null);
             Container.Bind<Enemy>().FromInstance(enemy).AsSingle();
-            // enemy.spawnerHexagons = spawnerHexagons;
+             enemy.Initialize(spawnerHexagonsEnemy);
         }
         
     }

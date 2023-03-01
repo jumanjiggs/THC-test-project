@@ -1,4 +1,5 @@
-﻿using CodeBase.Hexagons;
+﻿using System.Threading.Tasks;
+using CodeBase.Hexagons;
 using DG.Tweening;
 using UnityEngine;
 
@@ -12,14 +13,16 @@ namespace CodeBase.Units
         private const int NumJumps = 1;
         private const float Duration = 1.5f;
         private const float OffsetY = 2f;
-        
-        [Header("UNIT CHARACTERISTICS")] 
-        [SerializeField] private Rigidbody rb;
+
+        [Header("UNIT CHARACTERISTICS")] [SerializeField]
+        private Rigidbody rb;
+
         [SerializeField] private Vector3 jump;
         [SerializeField] private float jumpForce;
 
-        [Header("BALL CHARACTERISTICS")]
-        [SerializeField] private GameObject ball;
+        [Header("BALL CHARACTERISTICS")] [SerializeField]
+        private GameObject ball;
+
         [SerializeField] private Transform targetShot;
         [SerializeField] private Transform spawnPositionBall;
         [SerializeField] private Transform ballParent;
@@ -41,6 +44,7 @@ namespace CodeBase.Units
                 SpawnNewBall();
                 JumpOnHexagon();
             }
+
             UpdateVelocity();
         }
 
@@ -48,6 +52,12 @@ namespace CodeBase.Units
         {
             if (collision.gameObject.CompareTag("Ground"))
                 _isGrounded = true;
+        }
+
+        private void AddListeners()
+        {
+            SpawnerHexagons.bucketCompleted.AddListener(MoveToNextHexagon);
+            SpawnerHexagons.allBucketsCompleted.AddListener(DisableJumpingAndThrow);
         }
 
         private void OnDisable()
@@ -116,25 +126,25 @@ namespace CodeBase.Units
 
         private void MoveToNextHexagon()
         {
-            var nextHexagonPosition = GetNextPosition();
-            JumpOnNextPosition(nextHexagonPosition);
+            JumpOnNextPosition();
             RotateInAir();
         }
 
         private Vector3 GetNextPosition()
         {
-            var nextHexagonPosition = new Vector3(SpawnerHexagons.hex[SpawnerHexagons.indexHex].transform.position.x,
-                SpawnerHexagons.hex[SpawnerHexagons.indexHex].transform.position.y + OffsetY,
-                SpawnerHexagons.hex[SpawnerHexagons.indexHex].transform.position.z);
+            var nextHexagonPosition = SpawnerHexagons.GetNextHexagonPosition();
             return nextHexagonPosition;
         }
 
-        private void JumpOnNextPosition(Vector3 nextHexagonPosition) =>
-            transform.DOJump(nextHexagonPosition, JumpPower, NumJumps, Duration).SetEase(Ease.Linear).OnComplete(() =>
+        private void JumpOnNextPosition()
+        {
+            Vector3 targetPosition = GetNextPosition();
+            transform.DOJump(targetPosition, JumpPower, NumJumps, Duration).SetEase(Ease.Linear).OnComplete(() =>
             {
                 SpawnerHexagons.isCollectedBucket = false;
                 SpawnerHexagons.CheckAllHexagonPassed();
             });
+        }
 
         private void RotateInAir() =>
             transform.DORotate(
@@ -156,13 +166,10 @@ namespace CodeBase.Units
 
         private void DisableJumpingAndThrow()
         {
-            Destroy(_currentBall.gameObject);
+            if (_currentBall != null)
+                Destroy(_currentBall.gameObject);
             _isFinished = true;
-        }
-        private void AddListeners()
-        {
-            SpawnerHexagons.bucketCompleted.AddListener(MoveToNextHexagon);
-            SpawnerHexagons.allBucketsCompleted.AddListener(DisableJumpingAndThrow);
+            
         }
     }
 }

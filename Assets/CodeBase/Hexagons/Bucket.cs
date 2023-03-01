@@ -12,12 +12,13 @@ namespace CodeBase.Hexagons
         private bool _isCollected;
         private static FXHolder FXHolder => FXHolder.Instance;
         
-        private void OnTriggerEnter(Collider other)
+        private  void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag(Ball) && !spawnerHexagons.isCollectedBucket && !_isCollected)
             {
                 _isCollected = true;
-                IncrementIndex();
+                spawnerHexagons.indexHex++;
+                spawnerHexagons.isCollectedBucket = true;
                 FXHolder.SpawnBucketFx(other.gameObject.transform);
                 spawnerHexagons.bucketCompleted.Invoke();
             }

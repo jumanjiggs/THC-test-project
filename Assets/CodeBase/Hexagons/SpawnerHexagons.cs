@@ -1,5 +1,8 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
@@ -11,9 +14,9 @@ namespace CodeBase.Hexagons
     {
         public UnityEvent bucketCompleted;
         public UnityEvent allBucketsCompleted;
+        public int indexHex; 
         
-        public int indexHex = -1;
-        [HideInInspector] public bool isCollectedBucket;
+        [HideInInspector]public bool isCollectedBucket;
         [HideInInspector] public List<Transform> hex;
 
         [SerializeField] private List<AssetReference> hexagons;
@@ -21,11 +24,13 @@ namespace CodeBase.Hexagons
         [SerializeField] private float offsetZ;
 
         private Vector3 _firstHexPosition;
-        private AsyncOperationHandle<IList<AssetReference>> _loadHandle;
+        private AsyncOperationHandle<GameObject> _currentObj;
 
 
-        private void Start() => 
+        private void Start()
+        {
             SpawnHexagons();
+        }
 
         private void SpawnHexagons()
         {
@@ -37,15 +42,22 @@ namespace CodeBase.Hexagons
                 handle.Completed += HandleOnCompleted;
             }
         }
-        
+
+        private void HandleOnCompleted(AsyncOperationHandle<GameObject> obj)
+        {
+            hex.Add(obj.Result.gameObject.transform);
+        }
+
+        public Vector3 GetNextHexagonPosition()
+        {
+            return new Vector3(hex[indexHex].transform.position.x, hex[indexHex].transform.position.y + 2f,
+                hex[indexHex].transform.position.z);
+        }
+
         public void CheckAllHexagonPassed()
         {
             if (indexHex == hex.Count - 2)
-            {
                 allBucketsCompleted.Invoke();
-            }   
         }
-        private void HandleOnCompleted(AsyncOperationHandle<GameObject> obj) => 
-            hex.Add(obj.Result.gameObject.transform);
     }
 }

@@ -23,13 +23,6 @@ namespace CodeBase.Hexagons
                 spawnerHexagons.bucketCompleted.Invoke();
             }
         }
-
-        private void IncrementIndex()
-        {
-            spawnerHexagons.isCollectedBucket = true;
-            spawnerHexagons.indexHex++;
-        }
-        
         
     }
 }
